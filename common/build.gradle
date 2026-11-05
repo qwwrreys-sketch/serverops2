@@ -1,0 +1,7 @@
+// 'common' is deliberately Minecraft-free plain Java: permissions, roles,
+// hierarchy rules and persisted data. It is bundled into the Fabric jar.
+plugins {
+    id 'java-library'
+}
+
+base { archivesName = "${project.mod_id}-common" }

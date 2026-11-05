@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "serverops",
+  "version": "${version}",
+  "name": "Server Ops",
+  "description": "Compact staff dashboard: players, roles with a strict hierarchy, role tags above nametags, world and season control.",
+  "authors": ["Server Ops"],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.serverops.fabric.ServerOpsMod",
+      "com.serverops.fabric.sidemenu.MenuMod",
+      "com.serverops.fabric.adminlog.AdminLogMod"
+    ],
+    "client": [
+      "com.serverops.fabric.client.ServerOpsClient",
+      "com.serverops.fabric.sidemenu.client.MenuClient",
+      "com.serverops.fabric.adminlog.client.AdminLogClient"
+    ]
+  },
+  "mixins": [
+    { "config": "serverops.mixins.json", "environment": "client" }
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": "1.20.1",
+    "java": ">=17",
+    "fabric-api": "*"
+  }
+}

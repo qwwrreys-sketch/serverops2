@@ -1,0 +1,27 @@
+// Root build: shared configuration for the 'common' and 'fabric' modules.
+plugins {
+    // Declared here (not applied) so every module sees the same Loom version.
+    id 'fabric-loom' version '1.6-SNAPSHOT' apply false
+}
+
+subprojects {
+    apply plugin: 'java'
+
+    group = rootProject.maven_group
+    version = rootProject.mod_version
+
+    repositories {
+        mavenCentral()
+        maven { name = 'Fabric'; url = 'https://maven.fabricmc.net/' }
+    }
+
+    java {
+        toolchain { languageVersion = JavaLanguageVersion.of(17) }
+        withSourcesJar()
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = 'UTF-8'
+        options.release = 17
+    }
+}

@@ -1,0 +1,28 @@
+plugins {
+    id 'fabric-loom'
+}
+
+base { archivesName = "${project.mod_id}-fabric" }
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    // Official Mojang mappings (the mod source is written against these names).
+    mappings loom.officialMojangMappings()
+
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+    implementation project(':common')
+}
+
+processResources {
+    inputs.property 'version', project.version
+    filesMatching('fabric.mod.json') {
+        expand 'version': project.version
+    }
+}
+
+// Bundle the Minecraft-free 'common' classes straight into the mod jar.
+jar {
+    from(project(':common').sourceSets.main.output)
+}
